@@ -1,0 +1,15 @@
+// configure openssl and engines
+sudo apt install build-essential pkg-config libssl-dev
+sudo tar xfvz openssl-1.1.1h.tar.gz --directory /opt/openssl
+cd /opt/openssl/openssl-1.1.1h/
+sudo ./config --prefix=/opt/openssl --openssldir=/opt/openssl/ssl enable-engine enable-dso enable-afalgeng disable-dynamic-engine no-hw-padlock
+sudo make
+sudo make test
+sudo make install
+cd /usr/bin
+sudo mv openssl openssl.old
+export LD_LIBRARY_PATH=/opt/openssl/lib
+
+// mount ram for file i/o
+sudo mkdir /ram
+sudo mount -t tmpfs -o rw,size=1024M tmpfs /ram

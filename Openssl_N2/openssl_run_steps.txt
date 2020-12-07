@@ -1,0 +1,2 @@
+// run openssl script
+sudo script -c ./openssl.sh -f /ram/log.log
